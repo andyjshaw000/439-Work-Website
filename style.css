@@ -84,3 +84,7 @@ h1 {
   text-align: center;
   margin: auto;
 }
+
+section p {
+  text-align: center;
+}
