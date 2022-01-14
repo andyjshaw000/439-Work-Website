@@ -69,3 +69,17 @@ a {
   text-decoration: none;
 }
 
+.images {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.header {
+  text-align: center;
+}
