@@ -1,25 +1,40 @@
-<!DOCTYPE html> 
-<html> 
-    <head> 
-        <meta charset="utf-8"> 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
-
-        <title>Example Student's HCDE 439 Physical Computing Page!</title> 
-
+        <title>Example Student's HCDE 439 Physical Computing Page!</title>
         <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
-
-    </head> 
-    <body> 
-
-        <div class="header">
-            <h1>Example Student's Assignment 2!</h1>
-            <p>
-            <img src="red-panda.jpg" width=400></a>
-            </p>
-            <p>
-            Here is all the documentation for assignment 2!
-            </p>
+    </head>
+    <body>
+        <h1>Andy's Assignment 2!</h1>
+        <div class="images">
+            <section>
+                <p><img src="a2circuit.JPG" width=400></p>
+                <p>Here is an image of my circuit.</p>
+            </section>
+            <section>
+                <p><img src="a2gif.gif" width=800></p>
+                <p>
+                    Here is an image of my circuit working. The LEDs blink and turn on/off
+                    depending on if I press the button.
+                </p>
+            </section>
+            <section>
+                <p><img src="a2schematic.png" width=1000></p>
+                <p>
+                    Here I went with 300 ohms for the LEDs since I knew the Arduino provided
+                    5 volts and the circuits were in series. The LEDs are recommended to be <br>
+                    powered around 20 mA, so 5/.02 = 250 ohms and 330 ohms was the closest we had. I
+                    did not want to go lower than 250 ohms, as I did not want to possibly <br>
+                    short my LEDs. I went with a 10k ohm resistor for my switch to avoid an open
+                    circuit and to keep the pin grounded when the switch is closed.
+                </p>
+            </section>
+            <section>
+                <p><img src="a2arduino.png" width=1000></p>
+                <p>Here is my code with comments explaining how it works.</p>
+            </section>
         </div>
-        
     </body>
 </html>
