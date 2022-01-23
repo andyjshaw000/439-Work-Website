@@ -23,12 +23,15 @@
             <section>
                 <p><img src="a2schematic.png" width=1000></p>
                 <p>
-                    Here I went with 300 ohms for the LEDs since I knew the Arduino provided
-                    5 volts and the circuits were in series. The LEDs are recommended to be <br>
-                    powered around 20 mA, so 5/.02 = 250 ohms and 330 ohms was the closest we had. I
-                    did not want to go lower than 250 ohms, as I did not want to possibly <br>
-                    short my LEDs. I went with a 10k ohm resistor for my switch to avoid an open
-                    circuit and to keep the pin grounded when the switch is closed.
+                    In this circuit I used 2 different types of LEDs. The yellow LED has a
+                    voltage drop of 1.8 v, and the white has a voltage drop of 3.3 v. I had to
+                    choose resistors that provided the recommended 20 a. For the yellow LED's
+                    resistor, I needed a (5 - 1.8) / .02 = 160 ohm resistor. The closest resistor
+                    I had to this was 220 ohm (I went over to make sure  I didn't short the LED).
+                    For the white LED's resistor, I needed a (5 - 3.3) / .02 = 85 ohm resistor.
+                    The closest resistor I had to this was 100 ohm (I went over to make sure
+                    I didn't short the LED). I went with a 10k ohm resistor for my switch to
+                    avoid an open circuit and to keep the pin grounded when the switch is closed.
                 </p>
             </section>
             <section>
