@@ -88,3 +88,7 @@ h1 {
 section p {
   text-align: center;
 }
+
+image {
+  max-width: 600 px;
+}
