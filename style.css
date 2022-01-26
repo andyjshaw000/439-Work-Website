@@ -87,8 +87,10 @@ h1 {
 
 section p {
   text-align: center;
+  padding: 30px;
 }
 
-image {
-  max-width: 800 px;
+img {
+  max-width: 700px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
