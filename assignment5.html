@@ -28,9 +28,20 @@
                 <p><img src="a5schematic.png" width=1000></p>
                 <p>
                     By using an external power source that provided 12 volts, I was able
-                    to power an LED strip. With the help of a MOSFET transistor and arduino
+                    to power an LED strip. With the help of an N MOSFET
+                    transistor with a drain current 32A and Arduino board
                     I was able to control how much voltage/current flowed between
-                    the source and the drain.
+                    the source and the drain. Since the LED strips have 3 white LEDs in series,
+                    we know in an LED strip section, there will be 3 * 3.3 = 9.9 V drop since white LEDs
+                    have a voltage drop of ~3.3 V. Since the power supply is 12 V, there is
+                    a 12 - 9.9 = ~2.1 V drop across resistors in series with the three LEDs.
+                    The resistors are marked 181, so 18 * 10 = 180 ohms. Since 2.1 = I * 180,
+                    2.1/180 = 0.01166A, 11.66mA across one section of the strip.
+                    There are 100 sections, which suggests 100 * 11.66 = ~1.17 A across the entire
+                    load and circuit (before the transistor). On the right circuit, since I use a
+                    1 megohm resistor for absolute touch, and 12 = I * 1000000, 12/1000000 =
+                    0.000012A, .012mA is across the entire right circuit before it breaks off
+                    into the sensor and sensor pin.
                     Using the CapacitiveSensor library, I used pins 4 and 2 to sense touch/
                     resistance.
                 </p>
@@ -39,9 +50,9 @@
                 <p><img src="a5arduino.png" width=1000></p>
                 <p>
                     Here is my code with comments explaining how it works. I use an array to average
-                    the values of the capacitive sensor since it is very finnicky and sensitive.
+                    the values of the capacitive sensor since it is very finicky and sensitive.
                     The array is populated with the values from the sensor and the loops takes an
-                    average value of all of the values in the array. I use the CapacitiveSensor
+                    average value of all the values in the array. I use the CapacitiveSensor
                     library.
                 </p>
                 <div style="height:800px;width:1600px;overflow:scroll;align:center">
@@ -65,7 +76,7 @@
                         }
 
 
-                        void loop() {                                                                                 // runs this code as the arduino is powered and loops through
+                        void loop() {                                                                                 // runs this code as the Arduino is powered and loops through
                           long total1 =  cs_4_2.capacitiveSensor(30);                                                 // tracks the long containing the added (sensed) capacitance from our sensor
                           total = total - readings[readIndex];                                                        // subtracts the last reading from the total
                           readings[readIndex] = map(total1, 0, 900, 0, 255);                                          // adds the new reading to the array, which is a mapping of the long from the sensor to 0 - 255
