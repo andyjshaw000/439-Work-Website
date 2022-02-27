@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+        <title>Andy's HCDE 439 Physical Computing Page!</title>
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Andy's Assignment 6!</h1>
+        <div class="images">
+            <section>
+                <p><img src="a6circuit.JPG" width=400></p>
+                <p>Here is an image of my circuit.</p>
+            </section>
+            <section>
+                <p><img src="a6circuit2.JPG" width=400></p>
+                <p>Here is another image of my circuit.</p>
+            </section>
+            <section>
+                <p><img src="a6circuit3.JPG" width=400></p>
+                <p>Here is ANOTHER image of my circuit.</p>
+            </section>
+            <section>
+                <p><img src="a6gif.gif" width=800></p>
+                <p>
+                    Here is a gif of my circuit working. The circle on the screen will move based
+                    on input received from the joystick.
+                </p>
+            </section>
+            <section>
+                <p><img src="a6gif2.gif" width=800></p>
+                <p>
+                    Here is a another gif of my circuit working. The LED's brightness will fade
+                    if the button has been toggled/pressed. When toggled on, the brightness of the
+                    LED will increase until it reaches its max brightness, then resets. Toggling
+                    will stop the LED at whatever brightness it is at.
+                </p>
+            </section>
+            <section>
+                <p><img src="a6schematic.png" width=1000></p>
+                <p>
+                    The green LED has a voltage drop of 1.8 v. I had to
+                    choose resistors that provided the recommended 20 a. For the green LED's
+                    resistor, I needed a (5 - 1.8) / .02 = 160 ohm resistor. The closest resistor
+                    I had to this was 220 ohm (I went over to make sure  I didn't short the LED).
+                    The Arduino Uno has ADC resolution of 10 bits. Hence the values on
+                    each analog channel can vary from 0 to 1023 and the home position for the joystick
+                    is x: 511, y: 511.
+                </p>
+            </section>
+            <section>
+                <p><img src="a6arduino.png" width=1000></p>
+                <p>
+                    Here is my code with comments explaining how it works. I read the values of
+                    the joystick and write them to the serial monitor in the form of an array in
+                    each line. The code checks to see if there is any communication from serial and
+                    if there is, it will adjust the LED's brightness to be whatever data is read
+                    from serial.
+                </p>
+            <section>
+                <h2 style="text-align:center;">Arduino</h2>
+                <code>
+                    <pre>
+                        int x = A0;                                   //pin for reading the x value of the joystick
+                        int y = A1;                                   //pin for reading the y value of the joystick
+                        int xval = 0;                                 //created a variable to track the x value of the joystick
+                        int yval = 0;                                 //created a variable to track the y value of the joystick
+                        int LED = 3;
+
+                        void setup() {                                //sets up the arduino with the following pins and variables
+                          Serial.begin(9600);                         //initiates serial communication for reading values
+                          pinMode(LED, OUTPUT);                       //initiates pin LED (3) as an OUTPUT pin
+                        }
+
+                        void loop() {                                 //runs this code as the arduino is powered and loops through
+                          xval = analogRead(x);                       //reads the x value of the joystick
+                          yval = analogRead(y);                       //reads the y value of the joystick
+                          Serial.print("[");                          //prints a "[" to the serial monitor
+                          Serial.print(xval);                         //prints the x value to the serial monitor
+                          Serial.print(",");                          //prints a "," to the serial monitor
+                          Serial.print(yval);                         //prints the y value to the serial monitor
+                          Serial.println("]");                        //prints a "]" to the serial monitor and makes a new line
+                          if (Serial.available() > 0) {               //checks if there is serial data
+                            int inByte = Serial.read();               //reads and stores in a variable
+                            analogWrite(LED, inByte);                 //writes the serial data to LED brightness
+                            }
+                        }
+                    </pre>
+                </code>
+            </section>
+            <section>
+                <h2 style="text-align:center;">JavaScript (P5)</h2>
+                <code>
+                    <pre>
+                        var serial; // variable to hold an instance of the serialport library
+                        var portName = '/dev/tty.usbmodem143301' //rename to the name of your port
+                        var dataarray = []; //some data coming in over serial!
+                        let timerId = null;
+                        let remainingSeconds = 0;
+
+                        function setup() {
+                          serial = new p5.SerialPort();       // make a new instance of the serialport library
+                          serial.on('list', printList);       // set a callback function for the serialport list event
+                          serial.on('connected', serverConnected); // callback for connecting to the server
+                          serial.on('open', portOpen);        // callback for the port opening
+                          serial.on('data', serialEvent);     // callback for when new data arrives
+                          serial.on('error', serialError);    // callback for errors
+                          serial.on('close', portClose);      // callback for the port closing
+                          serial.list();                      // list the serial ports
+                          serial.open(portName);              // open a serial port
+                          createCanvas(1500, 1000);
+                          background(0);
+                        }
+
+                        (function() {
+
+                          window.addEventListener('load', init);
+
+                          function init() {
+                            let button = document.querySelector("button");
+                            button.addEventListener("click", function() {
+                            if (timerId === null) {
+                              timerId = setInterval(advance, 10);
+                            } else {
+                              clearInterval(timerId);
+                              timerId = null;
+                            }
+                            });
+                          }
+                        })();
+
+                        function advance() {
+                          remainingSeconds++;
+                          if (remainingSeconds > 255) {
+                          remainingSeconds = 0;
+                          }
+                        }
+
+                        function printList(portList) {
+                          // portList is an array of serial port names
+                          for (var i = 0; i < portList.length; i++) {
+                            // Display the list the console:
+                            print(i + " " + portList[i]);
+                          }
+                        }
+
+                        function serverConnected() {
+                          print('Connected to server.');
+                        }
+
+                        function portOpen() {
+                          print('The serial port opened.')
+                        }
+
+                        function serialError(err) {
+                          print('Something went wrong with the serial port. ' + err);
+                        }
+
+                        function portClose() {
+                          print('The serial port closed.');
+                        }
+
+                        function serialEvent() {
+                          if (serial.available()) {
+                            var datastring = serial.readLine();
+                            var newarray;
+                            try {
+                              newarray = JSON.parse(datastring);
+                            } catch(err) {
+                              console.log(err);
+                            }
+                            if (typeof(newarray) == 'object') {
+                              dataarray = newarray;
+                            }
+                            console.log("got back " + datastring);
+                          }
+                        }
+
+                        function draw() {
+                          serial.write(remainingSeconds); // send it out the serial port
+                          clear();
+                          noStroke();
+                          fill("#a742f5")
+                          ellipse(dataarray[0] * 1.3 + 50, dataarray[1] / 1.8 + 50, 50, 50);
+                        }
+                    </pre>
+                </code>
+                <p>
+                    This code connects the serial port to an html webpage that uses p5.js.
+                    The code will log the status of the port during setup to the
+                    console.
+                    I added a button with an event listener and timer to toggle if I want my LED
+                    lit up or not. I send this data over through the serial port to arduino.
+                    The code will finally draw on the page a circle that moves around
+                    based on input received from the arduino by parsing what the arduino serial
+                    sends, which should look like an array every line.
+                </p>>
+            </section>
+        </div>
+    </body>
+</html>
