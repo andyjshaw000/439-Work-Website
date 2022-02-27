@@ -46,7 +46,8 @@
                     I had to this was 220 ohm (I went over to make sure  I didn't short the LED).
                     The Arduino Uno has ADC resolution of 10 bits. Hence the values on
                     each analog channel can vary from 0 to 1023 and the home position for the joystick
-                    is x: 511, y: 511.
+                    is x: 511, y: 511. The joystick is powered
+                    by 5V given through the arduino's pin.
                 </p>
             </section>
             <section>
@@ -58,6 +59,7 @@
                     if there is, it will adjust the LED's brightness to be whatever data is read
                     from serial.
                 </p>
+            </section>
             <section>
                 <h2 style="text-align:center;">Arduino</h2>
                 <code>
@@ -84,7 +86,7 @@
                           if (Serial.available() > 0) {               //checks if there is serial data
                             int inByte = Serial.read();               //reads and stores in a variable
                             analogWrite(LED, inByte);                 //writes the serial data to LED brightness
-                            }
+                          }
                         }
                     </pre>
                 </code>
@@ -93,96 +95,91 @@
                 <h2 style="text-align:center;">JavaScript (P5)</h2>
                 <code>
                     <pre>
-                        var serial; // variable to hold an instance of the serialport library
-                        var portName = '/dev/tty.usbmodem143301' //rename to the name of your port
-                        var dataarray = []; //some data coming in over serial!
-                        let timerId = null;
-                        let remainingSeconds = 0;
+                        var serial;                                                                     //variable to hold an instance of the serialport library
+                        var portName = '/dev/tty.usbmodem143301'                                        //the name of my port
+                        var dataarray = [];                                                             //data from serial stored in array
+                        let timerId = null;                                                             //used to check if a timer started
+                        let remainingSeconds = 0;                                                       //tracks amount of time the timer has been going
 
-                        function setup() {
-                          serial = new p5.SerialPort();       // make a new instance of the serialport library
-                          serial.on('list', printList);       // set a callback function for the serialport list event
-                          serial.on('connected', serverConnected); // callback for connecting to the server
-                          serial.on('open', portOpen);        // callback for the port opening
-                          serial.on('data', serialEvent);     // callback for when new data arrives
-                          serial.on('error', serialError);    // callback for errors
-                          serial.on('close', portClose);      // callback for the port closing
-                          serial.list();                      // list the serial ports
-                          serial.open(portName);              // open a serial port
-                          createCanvas(1500, 1000);
-                          background(0);
+                        function setup() {                                                              //function called during page setup
+                          serial = new p5.SerialPort();                                                 //new instance of the serialport library
+                          serial.on('list', printList);                                                 //set a callback function for the serialport list event
+                          serial.on('connected', serverConnected);                                      //callback for connecting to the server
+                          serial.on('open', portOpen);                                                  //callback for the port opening
+                          serial.on('data', serialEvent);                                               //callback for when new data arrives
+                          serial.on('error', serialError);                                              //callback for errors
+                          serial.on('close', portClose);                                                //callback for the port closing
+                          serial.list();                                                                //list the serial ports
+                          serial.open(portName);                                                        //open a serial port
+                          createCanvas(1500, 1000);                                                     //creates a canvas to draw on
+                          background(0);                                                                //sets the background color to black
                         }
 
-                        (function() {
-
-                          window.addEventListener('load', init);
-
-                          function init() {
-                            let button = document.querySelector("button");
-                            button.addEventListener("click", function() {
-                            if (timerId === null) {
-                              timerId = setInterval(advance, 10);
-                            } else {
-                              clearInterval(timerId);
-                              timerId = null;
-                            }
+                        (function() {                                                                   //anonymous function for callback
+                          window.addEventListener('load', init);                                        //checks for when page has loaded to "init"
+                          function init() {                                                             //function called when page loaded
+                            let button = document.querySelector("button");                              //finds the first button on the html page
+                            button.addEventListener("click", function() {                               //adds functionality to button when clicked
+                              if (timerId === null) {                                                   //if the timer has not been turned on
+                                timerId = setInterval(advance, 10);                                     //create a timer and "advances"
+                              } else {                                                                  //when the timer has been turned on
+                                clearInterval(timerId);                                                 //turns off the timer
+                                timerId = null;                                                         //resets the value used to check the timer's state
+                              }
                             });
                           }
                         })();
 
-                        function advance() {
-                          remainingSeconds++;
-                          if (remainingSeconds > 255) {
-                          remainingSeconds = 0;
+                        function advance() {                                                            //function called every 10 ms when timer is on
+                          remainingSeconds++;                                                           //increments the remainingSeconds
+                          if (remainingSeconds > 255) {                                                 //if remainingSeconds is over 255
+                            remainingSeconds = 0;                                                       //reset remainingSeconds to 0
                           }
                         }
 
-                        function printList(portList) {
-                          // portList is an array of serial port names
-                          for (var i = 0; i < portList.length; i++) {
-                            // Display the list the console:
-                            print(i + " " + portList[i]);
+                        function printList(portList) {                                                  //function called during setup to see ports
+                          for (var i = 0; i < portList.length; i++) {                                   //for the portList length, which is an array of serial ports
+                            print(i + " " + portList[i]);                                               //prints list to console
                           }
                         }
 
-                        function serverConnected() {
-                          print('Connected to server.');
+                        function serverConnected() {                                                    //function called when server is connected
+                          print('Connected to server.');                                                //prints appropriate message
                         }
 
-                        function portOpen() {
-                          print('The serial port opened.')
+                        function portOpen() {                                                           //function called when port is open
+                          print('The serial port opened.')                                              //prints appropriate message
                         }
 
-                        function serialError(err) {
-                          print('Something went wrong with the serial port. ' + err);
+                        function serialError(err) {                                                     //function called when there is an error with serial
+                          print('Something went wrong with the serial port. ' + err);                   //prints appropriate message
                         }
 
-                        function portClose() {
-                          print('The serial port closed.');
+                        function portClose() {                                                          //function called when port is closed
+                          print('The serial port closed.');                                             //prints appropriate message
                         }
 
-                        function serialEvent() {
-                          if (serial.available()) {
-                            var datastring = serial.readLine();
-                            var newarray;
-                            try {
-                              newarray = JSON.parse(datastring);
-                            } catch(err) {
-                              console.log(err);
+                        function serialEvent() {                                                        //function called when something happens through serial
+                          if (serial.available()) {                                                     //if the serial is working
+                            var datastring = serial.readLine();                                         //stores the information from serial
+                            var newarray;                                                               //creates a temporary array
+                            try {                                                                       //trys the block of code
+                              newarray = JSON.parse(datastring);                                        //stores the information from serial into the temporary array
+                            } catch(err) {                                                              //if an error occurs in the block
+                              console.log(err);                                                         //prints the error
                             }
-                            if (typeof(newarray) == 'object') {
-                              dataarray = newarray;
+                            if (typeof(newarray) == 'object') {                                         //if the temporary array/ information from serial is an array
+                              dataarray = newarray;                                                     //makes our global array the temporary array
                             }
-                            console.log("got back " + datastring);
                           }
                         }
 
-                        function draw() {
-                          serial.write(remainingSeconds); // send it out the serial port
-                          clear();
-                          noStroke();
-                          fill("#a742f5")
-                          ellipse(dataarray[0] * 1.3 + 50, dataarray[1] / 1.8 + 50, 50, 50);
+                        function draw() {                                                               //function called to draw on page
+                          serial.write(remainingSeconds);                                               //sends remainingSeconds to the serial port for arduino
+                          clear();                                                                      //clears the page
+                          noStroke();                                                                   //removes stroke from anything below
+                          fill("#a742f5");                                                              //fills anything below with a purple color
+                          ellipse(dataarray[0] * 1.3 + 50, dataarray[1] / 1.8 + 50, 50, 50);            //draws a small ellipse with position based on global array's values
                         }
                     </pre>
                 </code>
@@ -194,8 +191,42 @@
                     lit up or not. I send this data over through the serial port to arduino.
                     The code will finally draw on the page a circle that moves around
                     based on input received from the arduino by parsing what the arduino serial
-                    sends, which should look like an array every line.
-                </p>>
+                    sends, which should look like an array every line. I multiply and divide the
+                    values of the array when changing the ellipse's position from joystick input
+                    since the joystick inputs values from 0 - 1023 and I needed the ellipse to
+                    fit on the page. remainingSeconds is limited from 0 - 255 because analogWrite()
+                    on the arduino can only work with values from 0 - 255
+                </p>
+            </section>
+            <section>
+                <h2 style="text-align:center;">HTML</h2>
+                <code>
+                    <pre>
+                        &lt;!DOCTYPE html&gt;                                                           declares the document as HTML
+                        &lt;html lang=""&gt;                                                            sets the language of the html
+                          &lt;head&gt;
+                            &lt;meta charset="utf-8">                                                   sets utf-8 encoding
+                            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">   sets meta information
+                            &lt;title>Joystick and Button&lt;/title>                                    sets the name of the page
+                            &lt;style> body {padding: 0; margin: 0;} &lt;/style>                        styles the page
+                            &lt;script src="../p5.min.js">&lt;/script>                                  runs the min.js script
+                            &lt;script src="../addons/p5.dom.min.js">&lt;/script>                       runs the dom.min.js script
+                            &lt;script src="../addons/p5.sound.min.js">&lt;/script>                     runs the sound.min.js script
+                            &lt;script src="../addons/p5.serialport.js">&lt;/script>                    runs the serialport.js script
+                            &lt;script src="sketch.js">&lt;/script>                                     runs the sketch.js script
+                            &lt;div style="text-align:center;">                                         aligns a div to the center
+                              &lt;button>Toggle LED&lt;/button>                                         creates a button with text "Toggle LED"
+                            &lt;/div>
+                          &lt;/head>
+                        &lt;body>
+                        &lt;/body>
+                        &lt;/html>
+                    </pre>
+                </code>
+                <p>
+                    This code is setup for an empty html page that runs many javascript scripts to
+                    support serial connection and p5
+                </p>
             </section>
         </div>
     </body>
