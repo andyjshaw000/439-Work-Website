@@ -7,7 +7,7 @@ html, body {
 
 h1,h2,h3,h4 {
   font-family: 'helvetica', 'arial', 'sans';
-  }
+}
 
 
 a {
@@ -75,6 +75,10 @@ a {
 }
 
 h1 {
+  text-align: center;
+}
+
+h2 {
   text-align: center;
 }
 
