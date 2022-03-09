@@ -85,3 +85,8 @@ code {
   padding: 2px;
   font-size: 85%;
 }
+
+section ul, section ol {
+  margin: auto;
+  display: table;
+}
