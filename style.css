@@ -90,3 +90,13 @@ section ul, section ol {
   margin: auto;
   display: table;
 }
+
+a {
+  color: #9c08ff;
+  font-weight: bold;
+  text-decoration: underline;
+  text-transform: uppercase;
+  background-color: #e3f074;
+  padding: 1px;
+  font-size: large;
+}
