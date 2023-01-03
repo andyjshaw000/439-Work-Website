@@ -20,8 +20,8 @@ a {
 }
 
 .classes {
-  align-items: center;
-  text-align: center;
+  /* align-items: center; */
+  /* text-align: center; */
   margin: auto;
   width: 50%;
 }
