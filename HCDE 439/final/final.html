@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+        <title>Andy's HCDE 439 Physical Computing Page!</title>
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+      <a href="../index3.html"><h3>Back</h3></a>
+        <h1>Andy's Final!</h1>
+        <section>
+          <h2>Concept</h2>
+          <p>
+            A game of Simon Says that works off arcade buttons that light up
+            and you must memorize a sequence
+          </p>
+        </section>
+        <section>
+          <h2>Timeline</h2>
+          <ul>
+            <li>3/4 Code done</li>
+              <ul>
+                <li>Need to randomly generate and track button press order</li>
+              </ul>
+            <li>3/6 Circuit done</li>
+              <ul>
+                <li>Start button (required)</li>
+                <li>Arcade buttons (required)</li>
+                  <ul>
+                    <li>Alternative: buttons with separate LED</li>
+                  </ul>
+              </ul>
+            <li>3/7 Prototype done</li>
+              <ul>
+                <li>Active buzzer (optional)</li>
+                <li>Screen to track score (optional)</li>
+              </ul>
+            <li>3/8 Presentation done</li>
+            <li>3/9 Documentation done </li>
+          </ul>
+      </section>
+        <div class="images">
+            <section>
+                <p><img src="final.JPG" width=800></p>
+                <p>Here is an image of my circuit.</p>
+            </section>
+            <section>
+                <p><img src="final2.JPG" width=800></p>
+                <p>Here is another image of my circuit.</p>
+            </section>
+            <section>
+                <p><img src="final3.JPG" width=800></p>
+                <p>Here is ANOTHER image of my circuit.</p>
+            </section>
+            <section>
+              <p><img src="finalpic3.JPG" width=800></p>
+              <p>Here is an image of my casing cut out.</p>
+          </section>
+          <section>
+              <p><img src="finalpic.JPG" width=800></p>
+              <p>Here is an image of my circuit inside my casing.</p>
+          </section>
+          <section>
+              <p><img src="finalpic2.JPG" width=800></p>
+              <p>Here is what the final product looked like.</p>
+          </section>
+            <section>
+                <p><img src="finalgif.gif" width=800></p>
+                <p>
+                    Here is a gif of my circuit working. The white button is pressed to start the
+                    game. Then, colors will begin turning off and the player must press the buttons
+                    in the order they were turned off in. More and more buttons get turned off in
+                    the sequence as the players memorizes and presses the sequence correctly until
+                    the user reaches 100 button presses correct in a row or gets one wrong. When the
+                    game ends, all buttons will turn off. In addition, when buttons are pressed and
+                    the game ends, an active buzzer will make a distinct corresponding sound.
+                </p>
+            </section>
+            <section>
+                <p><img src="finalgif2.gif" width=800></p>
+                <p>
+                  Here is a another gif of my circuit working. During the building phase I had a few
+                  requirements. I wanted to have the four main game buttons symmetrical and ordered
+                  to reduce the amount of visual distraction during a memory game. I also wanted the
+                  start button to be centered and appear different than the other game buttons to
+                  ensure users knew that it was a start button. The power for the game needed to be
+                  outside of the casing to allow power to be replaced easily if it runs out. Lastly,
+                  I did not want to spend too much on this project, so I cheaped out with the casing
+                  by using a cardboard box. In terms of usability, there were also a few things I
+                  thought about. I chose to use arcade buttons for better feel and touch when playing
+                  and increase tactile sensory. Furthermore, I used different color buttons for
+                  contrast and visual recognition. I chose to also add a buzzer to reinforce memory
+                  with audio cues, which is useful for those with difficulty seeing.
+                  Click <a href="https://drive.google.com/file/d/1U4VXROzQEHbU0hjyb2SX3dtLou6QoK0N/view?usp=sharing" target="_blank">here</a> to watch a video of me playing.
+                  Click <a href="https://drive.google.com/file/d/17qCwXzDVXamsAVE39dNj3dfi9sWlIfZ6/view?usp=sharing" target="_blank">here</a> to watch a video of my mom playing.
+                </p>
+            </section>
+            <section>
+              <p><img src="finalgif3.gif" width=800></p>
+              <p>
+                Here is my mom playing (for funsies)!
+              </p>
+          </section>
+            <section>
+                <p><img src="finalschematic.png" width=1000></p>
+                <p>
+                    Inside each arcade button are two small LEDs. These internal LEDs have their own
+                    unknown resistor built inside, but according to data from other users, works
+                    fine with 5V of power, which is why I did not use a resistor between the power
+                    and ground pins. This is also why I chose to use pins 7 - 11 as a
+                    digitalOutput to control when the buttons/ LEDs were on or off. Since the
+                    buttons had a pin that connected to power, and one that connected to ground, I knew
+                    the other pin was used to read when the button was pressed. I used a 10k ohm
+                    resistor for this last pin on every button to ensure that the input
+                    does not float between 0v and 5v AKA to keep pins 2 - 6 grounded when the switch
+                    was open. This allowed me to read when the switch was closed AKA when the arcade
+                    buttons were pressed with digitalInput.
+                    The active buzzer was connected to a pin to control the tone of the buzzer
+                    corresponding to each button and when the game ended.
+                </p>
+            </section>
+            <section>
+                <p><img src="finalarduino.png" width=1000></p>
+                <p><img src="finalarduino2.png" width=1000></p>
+                <p><img src="finalarduino3.png" width=1000></p>
+            </section>
+            <section>
+                <h2 style="text-align:center;">Arduino</h2>
+                <code>
+                    <pre>
+                      const int START = 2;                                //const for button pin readability
+                      const int STARTLED = 7;                             //const for LED pin readability
+                      const int BLUE = 3;                                 //const for button pin readability
+                      const int BLUELED = 8;                              //const for LED pin readability
+                      const int GRN = 4;                                  //const for button pin readability
+                      const int GRNLED = 9;                               //const for LED pin readability
+                      const int RED = 5;                                  //const for button pin readability
+                      const int REDLED = 10;                              //const for LED pin readability
+                      const int YLW = 6;                                  //const for button pin readability
+                      const int YLWLED = 11;                              //const for LED pin readability
+                      const int MAX = 100;                                //const for value readability
+                      const int BUZZER = 12;                              //const for buzzer pin readability
+
+                      int gameOrder[MAX];                                 //array for randomly generated order of the game's button presses
+                      int level = 1;                                      //variable to track the amount of user button presses in the current sequence
+
+                      void setup() {                                      //sets up the arduino with the following pins
+                        pinMode(START, INPUT);                            //sets the start arcade button as an input pin to read when pressed
+                        pinMode(BLUE, INPUT);                             //sets the blue arcade button as an input pin to read when pressed
+                        pinMode(GRN, INPUT);                              //sets the green arcade button as an input pin to read when pressed
+                        pinMode(RED, INPUT);                              //sets the red arcade button as an input pin to read when pressed
+                        pinMode(YLW, INPUT);                              //sets the yellow arcade button as an input pin to read when pressed
+
+                        pinMode(STARTLED, OUTPUT);                        //sets the start arcade button's LED as an output pin to control when on and off
+                        pinMode(BLUELED, OUTPUT);                         //sets the blue arcade button's LED as an output pin to control when on and off
+                        pinMode(GRNLED, OUTPUT);                          //sets the green arcade button's LED as an output pin to control when on and off
+                        pinMode(REDLED, OUTPUT);                          //sets the red arcade button's LED as an output pin to control when on and off
+                        pinMode(YLWLED, OUTPUT);                          //sets the yellow arcade button's LED as an output pin to control when on and off
+
+                        digitalWrite(STARTLED, HIGH);                     //sets the start arcade button's LED as on
+                        digitalWrite(BLUELED, HIGH);                      //sets the blue arcade button's LED as on
+                        digitalWrite(GRNLED, HIGH);                       //sets the green arcade button's LED as on
+                        digitalWrite(REDLED, HIGH);                       //sets the red arcade button's LED as on
+                        digitalWrite(YLWLED, HIGH);                       //sets the yellow arcade button's LED as on
+
+                        pinMode(BUZZER, OUTPUT);                          //sets the buzzer as an output pin to control frequency
+                      }
+
+                      void loop() {                                       //runs this code as the arduino is powered and loops through
+                        if (level == 1) {                                 //if it is level 1 (happens when arduino is started or a game ended)
+                          generateOrder();                                //generates a random order of 100 button presses
+                        }
+                        if (digitalRead(START) == HIGH || level != 1) {   //if the start button is pressed or level is not 1 (happens with successful order of user button presses)
+                          digitalWrite(STARTLED, LOW);                    //turns off the start LED
+                          delay(750);                                     //waits 750 ms
+                          flashOrder();                                   //shows the next order
+                          getOrder();                                     //checks for user presses and if they are in correct order
+                        }
+                      }
+
+                      void generateOrder() {                              //generates a random order of 100 button presses
+                        randomSeed(millis());                             //initializes the random number generator with millis (a fairly random input)
+                        for (int i = 0; i < MAX; i++) {                   //for 0 - 100
+                          gameOrder[i] = random(8, 12);                   //fills the game's array with values between 8 (inclusive) and 12 (exclusive)
+                        }
+                      }
+
+                      void flashOrder() {                                 //shows the next order
+                        for (int i = 0; i < level; i++) {                 //for the current level (amount of required button presses)
+                          digitalWrite(gameOrder[i], LOW);                //turns off the corresponding LED
+                          tone(BUZZER, gameOrder[i] * 33);                //plays the frequency of the respective button
+                          delay(500);                                     //waits half a second
+                          digitalWrite(gameOrder[i], HIGH);               //turns on the corresponding LED
+                          noTone(BUZZER);                                 //stops playing the frequency
+                          delay(500);                                     //waits half a second
+                        }
+                      }
+
+                      void getOrder() {                                   //checks for user presses and if they are in correct order
+                        int correct = 0;                                  //variable to track a correct button press
+                        for (int i = 0; i < level; i++) {                 //for the current level (amount of required button presses)
+                          correct = 0;                                    //resets the tracker for a correct button press
+                          while (correct == 0) {                          //while correct is 0 (happens with a successful user button press)
+                            if (digitalRead(BLUE) == HIGH) {              //if the blue button is pressed
+                              correct = pressed(i, correct, BLUELED);     //checks if the blue button is correct and lights its LED, if it is, return and move on to the next button check
+                            }
+                            if (digitalRead(GRN) == HIGH) {               //if the green button is pressed
+                              correct = pressed(i, correct, GRNLED);      //checks if the green button is correct and lights its LED, if it is, return and move on to the next button check
+                            }
+                            if (digitalRead(RED) == HIGH) {               //if the red button is pressed
+                              correct = pressed(i, correct, REDLED);      //checks if the red button is correct and lights its LED, if it is, return and move on to the next button check
+                            }
+                            if (digitalRead(YLW) == HIGH) {               //if the yellow button is pressed
+                              correct = pressed(i, correct, YLWLED);      //checks if the yellow button is correct and lights its LED, if it is, return and move on to the next button check
+                            }
+                          }
+                        }
+                        level++;                                          //after the user pressed all the correct button's add one more button to the order
+                      }
+
+                      int pressed(int i, int correct, int ledName) {      //checks if the button is correct and lights its LED, if it is, return and move on to the next button check
+                        if (ledName != gameOrder[i]) {                    //if the button press is not in the game's order
+                          endGame();                                      //flashes all LED's and resets the game
+                        } else {                                          //if the button press is in the game's order
+                          correct = 1;                                    //updates the tracking variable to a correct press
+                          digitalWrite(ledName, LOW);                     //turns off the LED
+                          tone(BUZZER, gameOrder[i] * 33);                //plays the frequency of the respective button
+                          delay(350);                                     //waits 350 ms
+                          digitalWrite(ledName, HIGH);                    //turns on the LED
+                          noTone(BUZZER);                                 //stops playing the frequency
+                          return correct;                                 //returns the tracking variable to the previous function to notify a correct press
+                        }
+                      }
+
+                      void endGame() {                                    //flashes all LED's and resets the game
+                        digitalWrite(BLUELED, LOW);                       //turns off the blue LED
+                        digitalWrite(GRNLED, LOW);                        //turns off the green LED
+                        digitalWrite(REDLED, LOW);                        //turns off the red LED
+                        digitalWrite(YLWLED, LOW);                        //turns off the yellow LED
+                        tone(BUZZER, 440);                                //plays a frequency of 440
+                        delay(3000);                                      //waits three seconds
+                        digitalWrite(STARTLED, HIGH);                     //turns on the start LED
+                        digitalWrite(BLUELED, HIGH);                      //turns on the blue LED
+                        digitalWrite(GRNLED, HIGH);                       //turns on the green LED
+                        digitalWrite(REDLED, HIGH);                       //turns on the red LED
+                        digitalWrite(YLWLED, HIGH);                       //turns on the yellow LED
+                        noTone(BUZZER);                                   //stops playing the frequency
+                        level = 0;                                        //resets the game
+                      }
+                    </pre>
+                </code>
+                <p>
+                    How this code works is that for each button, there are two pins needed. One is
+                    needed for reading when the button is pressed and another pin is needed to
+                    control when the button and LED of the button is off. The buzzer needed to be an
+                    output that way the Arduino could control the sound of it through its
+                    frequency. These were all initiated during the setup. Then, the Arduino goes
+                    through the loop() which generates random values between 8 (inclusive) and 12
+                    (exclusive) and puts them into an array of size 100. Then, if the start button
+                    is pressed, it begins flashing the order of the buttons that need to be pressed
+                    based on the value within the array of size 100. It will only flash as many
+                    buttons as the level requires, which increments by one each time a sequence
+                    is pressed correctly. Then the Arduino waits for user input through a while loop
+                    and uses a variable
+                    called "correct" that allows the Arduino to constantly check for button presses
+                    and stops the code from accepting other inputs or running other code. When a
+                    button is pressed, a sound is played, the button is turned off temporarily and
+                    then the variable "correct" is updated to allow the Arduino to check for the
+                    next button press. This continues until a button press during the while loop
+                    is incorrect, and if it is, the level is reset and the game ends with all
+                    the buttons turned off for two seconds and the buttons turned off. The game
+                    resets and then can be played again.
+              </p>
+            </section>
+        </div>
+    </body>
+</html>
