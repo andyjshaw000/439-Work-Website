@@ -1,5 +1,3 @@
-# HCDE 439 Physical Computing Winter 2021
+# Github Page for HCDE Classes at UW
 
-**Instructor:** Nadya Peek
-
-**Teaching assistant:** Blair Subbaraman
+By: Andy Shaw
