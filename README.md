@@ -1,3 +1,3 @@
 # Github Page for HCDE Classes at UW
 
-**By: Andy Shaw
+By: Andy Shaw
