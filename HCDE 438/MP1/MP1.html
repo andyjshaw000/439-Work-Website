@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./MP1.css" />
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+    <title>HCDE 438</title>
+  </head>
+  <nav>
+    <ul>
+      <a href="../index.html"><li id="name">Andy Shaw</li></a>
+      <li><a href="../../../index.html">GitPage Hub</a></li>
+      <li><a href="./bio/bio.html">About Me</a></li>
+      <li><a href="./recipe/recipe.html">Cheat Sheets</a></li>
+      <li><a href="">Coming Soon</a></li>
+      <li><a href="">Coming Soon</a></li>
+    </ul>
+  </nav>
+  <body>
+    <div class="page-container">
+      <div class="intro">
+        <h1 class="header">MP1 Writeup.</h1>
+      </div>
+      <h2>Overview and Usage</h2>
+      <div class="text-container">
+        <div>
+          <div class="text"> I created a Google chrome extension that replaces all images on the page with panda images. To run the code, you must unpack the extension in <a href="chrome://extensions/">chrome://extensions/</a>. Once it has been toggled on, any page you load from now until it is toggled off, will have its images replaced by pandas. Any pages that were already loaded before the extension was unpacked and toggled on must be refreshed for the extension to work.
+          </div>
+          <img src="work.gif">
+        </div>
+      </div>
+      <h2>Development Process</h2>
+      <div class="text-container">
+        <div>
+          <h3>Learning Chrome Extensions</h3>
+          <div class="text"> Unfortunately, I missed the class lecture on extensions, so I had to spend a lot of my own time learning how to create one. I did this by reading Google's documentation and looking over lecture slides. This was all new to me, so I spent a lot of time surfing through pages and documentation until I felt comfortable with how the chrome browser works. Then, I coped the example code from Google that estimated reading time on certain pages to get a feeling for it on my VSCode.
+          </div>
+          <h3>Original Idea</h3>
+          <div class="text"> My original idea was to create an extension that replaced all images on the browser based on one that was uploaded by the user in the HTML opup that appears when clicking on the extension. However, this ended up being a much more difficult task than I anticipated. Replacing images was easy, however uploading a file onto the browser that would later update the page after it had loaded was a task I was unable to do due to my inexperience with forms and Google Chrome.
+          </div>
+          <h3>Writing Code</h3>
+          <div class="text"> After trying to conceptualize how my original idea would work, I attempted to implement it, but got nothing working. I even tried using local files, however the extensions do not normally recognize your local server's files when an extension is loaded unless it is in the manifest. After discovering all of this, the task became to daunting and I opted for a simpler extension that would replace all images that were obtained from a REST API. This is where I got my panda images from.
+          </div>
+          <img src="buggy.png"></img>
+          <h3>Updating Knowledge and Code Based on Previous Output</h3>
+          <div class="text"> I had to refresh my knowledge on calling APIs on JavaScript (since I took CSE 154 Web Programming) and look up other resources on how other people incorporated this idea. This is where I found a <a href="https://levelup.gitconnected.com/chrome-extension-tutorial-replace-images-in-any-website-with-pikachu-de2a6e3548bb">Pikachu Image Replacer</a> which was perfect. This code was an inspiration and template for my code to replace images with pandas.
+          </div>
+        </div>
+      </div>
+      <h2>Issue Deep-Dive</h2>
+      <div class="text-container">
+        <div>
+          <div class="text"> A few issues appeared during the process of making this extension. One of them was trying to upload local files on the extension's HTML to be used on the browser and that was one that I had to give up on due to the complexity. The next issue I ran into was due to the limitations of the API. The API can limit requests if the requester is making too many requests within a span of time. This is to preserve servers and prevent bots from spamming data. However, because my extension makes multiple calls to the API (for each image), it gets caught in the mess. To resolve this issue, I had to use my understanding of data structures and JavaScript. The first 40 or so links request would go through, but afterwards would get 404 errors. So I saved all the unique panda images links from the API into a set and if there was a 404 request, I would choose an image from the set instead of a broken image link. This ended up working wonders since the requests weren't synchronous and ended up being a timing mess with the window loading. The last issue I ran into was that some images were not being replaced with pandas, which is where I realized some imag tags use a src and some use a srcset, so I updated my code accordingly.
+          </div>
+          <img src="fixing.png"></img>
+          <img src="working.png"></img>
+        </div>
+      </div>
+      <h2>Ideas and Future</h2>
+      <div class="text-container">
+        <div class="text">
+          <ul>Ability to upload an image on the extension HTML popup</ul>
+          <ul>Ability to easily toggle on and off button instead of going into chrome://extensions/</ul>
+          <ul>Loading images as the page loads/user continues scrolling</ul>
+          <ul>Replacing all types of images, even ones using a div tag</ul>
+        </div>
+      </div>
+      <h2>Kudos</h2>
+      <div class="text-container">
+        <div>
+          <div class="text"> <a href="https://levelup.gitconnected.com/chrome-extension-tutorial-replace-images-in-any-website-with-pikachu-de2a6e3548bb">Pikachu Image Replacer</a> <br> <a href="https://developer.chrome.com/docs/extensions/mv3/getstarted/">Getting Started with Chrome Extensions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

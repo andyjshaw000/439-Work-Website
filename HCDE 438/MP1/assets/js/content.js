@@ -9,5 +9,6 @@ for (let i = 0; i < images.length; i++) {
       tempLinks = Array.from(uQPandaLinks);
       images[i].src = tempLinks[Math.floor(Math.random() * tempLinks.length)];
       images[i].srcset = tempLinks[Math.floor(Math.random() * tempLinks.length)];
+      // images[i].auto-src = tempLinks[Math.floor(Math.random() * tempLinks.length)];
   });
 }
