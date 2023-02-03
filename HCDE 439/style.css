@@ -24,42 +24,19 @@ a {
   width: 50%;
 }
 
-.assignment:hover, .class:hover {
+.assignment:hover {
   overflow:auto
 }
 
-.assignment a:hover, .class a:hover {
-  background: #F06;
+.assignment a:hover {
+  /* background: #F06; */
   color: #F06;
   text-decoration: none;
 }
 
-.footer {
-  width: 1100px;
-  float: left;
-  padding: 300px 0px 30px 30px;
-}
-
-.widebody {
-  width: 800px;
-  padding: 0px 30px 30px 30px;
-}
-
-
-.widebody a:hover {
-  background: #F06;
-  color: #FFF;
-  text-decoration: none;
-}
-
-.images {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
 h1, h2, .header, section p {
   text-align: center;
+  line-height: 30px;
 }
 
 .header {
@@ -94,7 +71,20 @@ a {
   font-weight: bold;
   text-decoration: underline;
   text-transform: uppercase;
-  background-color: #e3f074;
-  padding: 1px;
   font-size: large;
+}
+
+a > h3 {
+  margin-left: 20px;
+}
+
+.assignments {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+p {
+  text-align: center;
 }
