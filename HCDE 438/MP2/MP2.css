@@ -126,6 +126,7 @@ body {
   margin-right: -100px;
   flex-wrap: wrap;
   display: inline-flex;
+  justify-content: center;
 }
 .gallery img{
   width: 360px;
@@ -136,4 +137,8 @@ body {
 .artandcaption p {
   text-align: center;
   margin-top: -10px;
+}
+
+a {
+  display: inline;
 }
