@@ -46,6 +46,7 @@ img {
   box-shadow: 6px 6px 5px #ccc;
   height: 250px;
   width: auto;
+  border: solid 1px rgb(239, 239, 239);
 }
 
 #desc {
