@@ -75,11 +75,11 @@ nav {
   margin-top: 80px;
 }
 
-body {
+/* body {
   margin-left: 60px;
   margin-right: 60px;
   line-height: 30px;
-}
+} */
 
 #name {
   float: left;
@@ -95,6 +95,6 @@ body {
 }
 
 img {
-  margin: auto;
-  width: 70%;
+  margin: 0;
+  width: 100%;
 }

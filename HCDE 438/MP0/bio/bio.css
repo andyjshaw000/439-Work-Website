@@ -16,6 +16,9 @@ h1 {
 
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.2vw;
+  /* line-height: 40%; */
+  /* line-height: 10px; */
 }
 
 h1 {
@@ -76,9 +79,9 @@ nav {
 }
 
 body {
-  margin-left: 60px;
-  margin-right: 60px;
-  line-height: 30px;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  line-height: 240%
 }
 
 #name {
@@ -96,10 +99,13 @@ body {
 
 .intro {
   margin-bottom: 110px;
-  margin-top: 110px;
+  /* margin-top: 110px; */
+  margin-top: .5vw;
+  margin-bottom: .5vw;
 }
 
 
 img {
-  width: 450px;
+  /* width: 450px; */
+  width: 32vw;
 }
