@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./FP1.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+    <meta charset="utf-8" />
+    <title>HCDE 438</title>
+  </head>
+  <nav>
+    <ul>
+      <a href="../index.html"><li id="name">Andy Shaw</li></a>
+      <li><a href="../../index.html">GitPage Hub</a></li>
+      <li><a href="../MP0/bio/bio.html">About Me</a></li>
+      <li><a href="../MP0/recipe/recipe.html">Cheat Sheets</a></li>
+      <li><a href="../MP0/resume/resume.html">Resume</a></li>
+    </ul>
+  </nav>
+  <body>
+    <div class="page-container">
+      <div class="intro">
+        <h1 class="header">FP1 Writeup.</h1>
+      </div>
+      <h2>Overview and Usage</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">My 2D game which can be found <a href="https://andyjshaw000.github.io/FinalProto/">here</a> features a Sun celestial ninja who has the power to bend the elements of fire, earth, water, sun, and air. The ninja must defend against shadow warriors who are growing stronger and trying to attack the Sun itself. To fight these shadow warriors, the player can shoot sun orbs that damage enemies with the left mouse button and move around using the WASD keys. However, the player must be careful not to collide with the shadow warriors, as this will cause damage. As the player defeats more enemies, they'll collect experience points that can be used to level up and become even more powerful. After every few levels, the player can choose to upgrade their bending abilities or their health, speed, or defense, which will help them to defeat even more enemies and ultimately save the Sun from danger.</div>
+          <a href="https://andyjshaw000.github.io/FinalProto/"><img src="gameplay.gif"></a>
+        </div>
+      </div>
+      <h2>Development Process</h2>
+      <div class="text-container">
+        <div>
+          <h3>Adding a Sword Option</h3>
+          <div class="text">The sword was a great addition to the game. I had to think about how I would implement it, since I had an idea of how I wanted it to work. I ended up needing to read more documentation about creating sprites and fortunately p5play came out with a new way to initialize their sprite class. I used a line sprite that would rotate around the player and this created the effect I wanted. Then I slapped on an animation and I was satisfied with the result.</div>
+          <img src="workingsword.gif">
+          <h3>Adding a Play Again and Pause Button</h3>
+          <div class="text">Adding these buttons were fairly easy. For playing again, since p5 already requires code for initialization, I could run it again when the button is pressed. Luckily, I factored my code in a way that made this a few lines of code with minor tweaks. As for the pause button, it was really easy to implement since I already have situations in the game that require it to pause. Though,is a bit buggy, since the game pauses regularly without a pause button. This makes the function of the pause button weird when the game is already paused, and its text content incorrect. In the future, I would want the button to be disabled when the game is paused. Initially, the pause button was in the draw function, but after trying to optimize my code, I realized this could be done in the setup, using less resources.</div>
+          <img src="playagainscreen.png">
+          <h3>Balancing the Game</h3>
+          <div class="text">Balancing the game only required a few minor tweaks. It was mostly in reducing the amount of damage certain skills did and mainly reducing the defense upgrade. Now, the defense upgrade reduces a percentage of itself, instead of a full percentage. Also, I added darkness into the game. As you can see below, now over time, enemies are more difficult to see (due to low contrast) as time increases. I want the game to be difficult and not really last any longer than 10 minutes, because even with the performance updates, it is still slow. In the future, if I have the time, I want to split my code into separate files and use JSON to separate types of variables. This was a suggestion given to me by my instructor Hannah.</div>
+          <img src="darkness.gif">
+          <h3>Cleaning Code</h3>
+          <div class="text">My code was really ugly. I still plan to fix it, but there were a lot of times where I named variable inconsistently and had bad code quality. Now all my functions are camelcased and my global variables are uppercase. This was thanks to the CMD+Shift+H Find and replace all functionality on VSCode. </div>
+          <h3>Removing Performance Inefficiencies</h3>
+          <div class="text">This was mainly thanks to Quinton, the creator of p5play. I mentioned to him that the program begins to run slow once more enemies spawn. He ended up chaning the library to use an array instead of a map to check for collisions, which significantly reduced resources. I also removed a few things in my code that were unecessary, such as specifying the diameter of center sprites, when their animation already has one or using less flag variables. Now, the perfomance issues are more so of a limitation due to planck (the physics engine) and p5, thought small inefficiencies in my code exists that I plan to fix.</div>
+        </div>
+      </div>
+      <h2>Issue Deep-Dive</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">Adding a sword was extremely difficult to do. What I wanted to create was a sword that would sweep across based on where the mouse position was. As we know, p5play and moving canvases are not very compatible when calculating mouse position. So, I spent a lot of time trying to iterate on my existing bullet code to work similarly as my sword. The problem with the sword was that it wasn't instantaneous. That meant the sword needed time to rotate, which meant it had to stick to the player. Well, to get a hitbox similar to a sword, I had to use a new sprite option added by p5play, which is the line/chain. This was extremely buggy and didn't support a lot of the fields that the sprites in the library do. So, I eventually figured out that I had to make a group for the sword and access the first available element and stick it to the moving player. But, after getting the line hitbox working, it wasn't perfect. The line location was displaced depending on which quadrant the mouse is in on the canvas. I decided to keep this because it would be extremely difficult to finetune the sword to work exactly where the mouse is. However, I ran into another issue with the sword animation. When adding a sword animation to the line, the sword would be displaced incorrectly and rotate along the wrong axis. To work around this, I made four different swords that are rotated slightly to be similar to the hitbox of the line sprite I created. Some other issues I ran into was my timer stacking onto itself because I didn't clear it when playing again and trying to update my code without messing other things up. I was able to workaround the timer issue easily since I have encountered it before in my web programming class (CSE 154) and to avoid breaking other things in my code, I often tested my game whenever I made a change. This ended up being very time consuming, but I am glad I did it because I was able to narrow down on issues that would've been harder to find later on.</div>
+          <img src="p5down.png">
+          <img src="brokensword.gif">
+        </div>
+      </div>
+      <h2>Ideas and Future</h2>
+      <div class="text-container">
+        <div class="text">
+          <ul>Tracking High Scores and Tutorial Completion</ul>
+          <ul>Adding Boss Levels</ul>
+          <ul>Adding Enemies</ul>
+          <ul>Improving Visuals (Upgrade Tracker, Images on Upgrade Cards, Cleaner Background)</ul>
+        </div>
+      </div>
+      <h2>Project Scope</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">Fortunately, everything I wanted to complete for this milestone I completed on time. Though, the sword doesn't interact as perfectly as I wanted it to, I am satisfied with my progress and my expectations for the final project deliverable are the same. Though, I know it will be much more work due to the nature of each addition I want to make to the game.</div>
+        </div>
+      </div>
+      <h2>Time Management</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">Also, fortunately, I completed everything I wanted to on time. There were times where I would work on things out of order instead of what I had planned to do because I was getting bored or lost.</div>
+        </div>
+      </div>
+      <h2>Implementation Plan</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">My implementation plan will be the same for the final. I plan on first, being able to make different enemies, then adding a boss, which itself, is a different enemy. This will be a slight overhaul of my existing code for enemies, but I have an idea of how I will complete it since I have done it before. Next, as for incorporating a database, this will continue to be the largest challenge for the project since I have little experienece with cloud databases. I am excited to see how it goes and if I get familiar with databases enough and have enough time, I could see myself extending this project to include stretch goals. </div>
+        </div>
+      </div>
+      <h2>Kudos</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">Quinton Ashley (creator of p5play)</div>
+          <img src="quinton.png">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
