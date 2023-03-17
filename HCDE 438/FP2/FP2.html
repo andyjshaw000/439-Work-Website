@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../projects.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+    <meta charset="utf-8" />
+    <title>HCDE 438</title>
+  </head>
+  <nav>
+    <ul>
+      <a href="../index.html"><li id="name">Andy Shaw</li></a>
+      <li><a href="../../index.html">GitPage Hub</a></li>
+      <li><a href="../MP0/bio/bio.html">About Me</a></li>
+      <li><a href="../MP0/recipe/recipe.html">Cheat Sheets</a></li>
+      <li><a href="../MP0/resume/resume.html">Resume</a></li>
+    </ul>
+  </nav>
+  <body>
+    <div class="page-container">
+      <div class="intro">
+        <h1 class="header">FP2 Writeup.</h1>
+      </div>
+      <h2>Overview and Usage</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">My 2D game, which can be found <a href="https://andyjshaw000.github.io/Final438/">here,</a> features a Sun celestial ninja who has the power to bend the elements of fire, earth, water, sun, and air. The ninja must defend against shadow warriors who are growing stronger and trying to attack the Sun itself. To fight these shadow warriors, the player can shoot sun orbs or slash a sun sword that damages enemies with the left mouse button and move around using the WASD keys. However, the player must be careful not to collide with the shadow warriors or get hit by their shadow balls, as this will cause damage. As the player defeats more enemies, they'll collect experience points that can be used to level up and become even more powerful. After every few levels, the player can choose to upgrade their bending abilities or their health, speed, or defense, which will help them defeat even more enemies and ultimately save the Sun from danger.</div>
+          <a href="https://andyjshaw000.github.io/FinalProto/"><img src="gameplay.gif"></a>
+        </div>
+      </div>
+      <h2>Development Process</h2>
+      <div class="text-container">
+        <div>
+          <h3>Adding Different Enemies</h3>
+          <div class="text">Adding different enemies was a simple task, fortunately, since I already have an enemies group/class. For my new enemies, I wanted ones that were better at close range, and ones better at far range, so I started prototyping a few ideas.</div>
+          <img src="shootbad.gif">
+          <div class="text">I decided to add red enemies that run quickly and purples ones that can shoot shadow orbs at the player location. The coding of the fast melee enemies was easy to do, since it's almost a carbon copy of the existing enemies, but with more speed and different animations. The coding of the slow shooting enemies was also easy to do, since my sun orbs when clicking the left mouse button have the same interactions and physics.</div>
+          <img src="shootgood.gif">
+          <h3>Adding a Boss</h3>
+          <div class="text">The boss was a really cool addition. My initial idea was to have a large enemy that spawned every five minutes and it would charge at the player in intervals. This ended up being hard to do, since the logic of the charging is difficult to achieve when the location of the player updates frequently. Nevertheless, I got it completed with some fine tuning with the timing and speed to make it not too difficult.</div>
+          <img src="boss.gif">
+          <h3>Leaderboard/Score Tracker</h3>
+          <div class="text">To track scores, I had to learn firebase and follow the in class tutortial Hannah provided. From there, with some help from Arissa, I was able to get a working backend quickly. The main problem was that submitting scores and displaying scores occured outside the canvas, so it kind of ruined the flow of the game and appearance.</div>
+          <img src="uglyleader.gif">
+          <div class="text">Though the backend worked, I wanted players to be able to see live updates of the database, so I added the snapshot function so that users could see their or others' scores populate the scoreboard if they made the top 5 in real time.</div>
+          <img src="snapshot.gif">
+          <div class="text">So, I needed to move everything to p5, which ended up taking a lot of time. I had to read the documentation about how to create, alter, append, and style HTML elements on the canvas. By playing around with the various functions and shower thinking about getting the scoreboard to look how I wanted, I was able to get it working.</div>
+          <img src="p5leader.gif">
+          <h3>Visual Update</h3>
+          <div class="text">I was nearing the end of the timeline and project, so I made a few last minute visual changes. One was an upgrade tracker. This was fairly easy to do, since there is a function in p5 to import images and place them on the canvas. I also decided to change the background images since I realized the images were eating up a lot of resources and didn't fit the theme as well as I envisioned.</div>
+          <img src="upgradetrack.gif">
+          <h3>Better UX</h3>
+          <div class="text">The last few changes I made were from asking friends to test and what they would want to improve about the gameplay. A few have mentioned that they would want to be able to hold down the mouse instead of having to click all the time, so that was easy to add with the mouseIsPressed built in p5 function. They also mentioned that the timer would run when they clicked off the page, so I added a document event listener to pause the game automatically when the page isn't being viewed.</div>
+          <img src="gamess.png">
+        </div>
+      </div>
+      <h2>Issue Deep-Dive</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">No major issues really occured during this phase of development. I feel that I have gotten very comfortable with both libraries and JavaScript. A few small things do come in mind though outside of coding. For example, balancing the game. I constantly have been changing values of upgrade damage/values, enemy health, enemy speed, and more to try and prevent overpowered things from happening, yet keeping the game enjoyable. I do expect people to find more issues in the future with certain mechanics, and balancing those will be even more difficult because of how large the code is and not knowing what approach to take to addressing the issue. I also ran into the issue of my music/sounds starting to become choppy. After some googling, I learned that it was a limitation of the p5 sound library and has been an issue since 2016. Because this issue has existed for so long, I don't expect them to fix it soon, so I removed any sounds that occur often such as pressing the left mouse button or collecting experience.</div>
+        </div>
+      </div>
+      <h2>Ideas and Future</h2>
+      <div class="text-container">
+        <div class="text">
+          <ul>Coins and Loot that can be Carried over into Future Games</ul>
+          <ul>A Menu Page</ul>
+          <ul>Multiplayer Co-op and/or Versus</ul>
+          <ul>Improve Sword Swing Location Accuracy</ul>
+          <ul>Update Water to not Block Player Health</ul>
+          <ul>Contrast Enemies More</ul>
+          <ul>Magnet Powerup</ul>
+          <ul>Cleaner Code/File Management </ul>
+        </div>
+      </div>
+      <h2>Kudos</h2>
+      <div class="text-container">
+        <div>
+          <div class="text">Quinton Ashley (creator of p5play and removed a bug by request)</div>
+          <img src="quinton.png">
+          <div class="text">Arissa Zheng (helped setup firebase)</div>
+          <div class="text">Tim Chen (helped with deployment)</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
