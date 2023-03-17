@@ -1,13 +1,13 @@
 img {
   display: block;
-  width: 80%;
+  width: 70%;
   border-radius: 10px;
   cursor: pointer;
   object-fit: cover;
   margin-left: auto;
   margin-right: auto;
 }
-
+/*
 .text-container {
   display: flex;
   flex-wrap: wrap;
@@ -119,122 +119,6 @@ body {
 
 a {
   display: inline;
-}
-
-/* img {
-  width: 800px;
-  border-radius: 10px;
-  cursor: pointer;
-  object-fit: cover;
-}
-
-.text-container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 80%;
-  margin: auto;
-  gap: 9px;
-}
-
-.text, p {
-  font-family: monospace;
-  font-size: .75rem;
-}
-
-body {
-  background-color: white;
-  color: rgb(66, 66, 66);
-}
-
-.page-container {
-  width: 80%;
-  margin-top: 10rem;
-  margin: auto;
-}
-
-h1 {
-  text-align: center;
-}
-
-body, p {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-h1 {
-  font-family:Helvetica, sans-serif;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-#subme {
-  color:mediumpurple;
-  font-style: italic;
-  font-weight: 600;
-}
-
-#desc {
-  margin-left: 200px;
-  margin-right: 200px;
-  font-style: normal;
-  align-items: center;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-li {
-  float: right;
-} */
-
-/* li a {
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  color: #8b8b8b;
-  font-weight:normal;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: small;
-}
-
-li a:hover {
-  background-color: rgb(255, 255, 255);
-  color: black;
-}
-
-nav {
-  font-family: Arial, Helvetica, sans-serif;
-  margin-bottom: 100px;
-  margin-top: 80px;
-}
-
-body {
-  margin-left: 60px;
-  margin-right: 60px;
-  line-height: 30px;
-}
-
-#name {
-  float: left;
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  color: #8b8b8b;
-  font-weight: bold;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: small;
-}
-
-.intro {
-  margin-bottom: 110px;
-  margin-top: 110px;
 } */
 
 .gallery {
@@ -262,4 +146,154 @@ a {
 img {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.picture {
+  width: 25vw;
+  border-radius: 1vw;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+
+.picture-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 120%;
+  margin: 0;
+  margin-left: -5vw;
+  gap: 1.5vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-title {
+  text-align: center;
+  font-family: monospace;
+  font-size: 1.5rem;
+}
+
+body {
+  background-color: white;
+  color: rgb(66, 66, 66);
+}
+
+.page-container {
+  width: 80%;
+  margin-top: 10rem;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  line-height: 10vh;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+  font-family:Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#subme {
+  color:mediumpurple;
+  font-style: italic;
+  font-weight: 600;
+}
+
+#desc {
+  margin: auto;
+  font-style: normal;
+  align-items: center;
+}
+
+p {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: right;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  padding: .5vw .75vw;
+  text-decoration: none;
+  color: #8b8b8b;
+  font-weight:normal;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: small;
+}
+
+li a:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+nav {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 10vh;
+  margin-top: 8vh;
+}
+
+body {
+  margin-left: 6vw;
+  margin-right: 6vw;
+  line-height: 4vh;
+}
+
+#name {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: .5vw .75vw;
+  text-decoration: none;
+  color: #8b8b8b;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: small;
+}
+
+.intro {
+  margin-bottom: 11vh;
+  margin-top: 11vh;
+}
+
+
+.pictureandovertext{
+  position: relative;
+}
+
+.pictureandovertext p {
+  position: absolute;
+  bottom: -3.5vh;
+  line-height: 10vh;
+  background: rgb(40, 40, 40);
+  color: white;
+  font-size: 2vw;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear;
+  border-radius: 1vw;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.pictureandovertext:hover p{
+  visibility: visible;
+  opacity: 0.8;
 }
