@@ -1,5 +1,5 @@
 .picture {
-  width: 20vw;
+  width: 50vh;
   border-radius: .25vw;
   /* object-fit: cover; */
   /* aspect-ratio: 1; */
@@ -19,7 +19,7 @@
 }
 
 .pictureandtext {
-  width: 20vw;
+  width: 50vh;
   margin: .75vw;
 }
 
