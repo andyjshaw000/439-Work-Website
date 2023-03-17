@@ -8,7 +8,8 @@ img {
 }
 
 .text {
-  font-size: 1vw;
+  font-size: 1.75vh;
+  line-height: 3.5vh;
 }
 
 /* body {
@@ -185,7 +186,7 @@ body {
 }
 
 .page-container {
-  width: 80%;
+  width: 90%;
   margin-top: 10rem;
   margin: auto;
 }
@@ -258,7 +259,6 @@ nav {
 body {
   margin-left: 6vw;
   margin-right: 6vw;
-  line-height: 2vw;
 }
 
 #name {
@@ -275,7 +275,7 @@ body {
 }
 
 .intro {
-  margin-bottom: 11vh;
-  margin-top: 11vh;
+  margin-bottom: 1.5vw;
+  margin-top: 1.5vw
 }
 

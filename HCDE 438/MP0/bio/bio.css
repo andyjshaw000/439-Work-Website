@@ -28,7 +28,7 @@ body {
 }
 
 .page-container {
-  width: 80%;
+  width: 90%;
   margin-top: 10rem;
   margin: auto;
 }
@@ -118,8 +118,8 @@ body {
 }
 
 .intro {
-  margin-bottom: 11vh;
-  margin-top: 11vh;
+  margin-bottom: 1.5vw;
+  margin-top: 1.5vw
 }
 
 #pfp {
