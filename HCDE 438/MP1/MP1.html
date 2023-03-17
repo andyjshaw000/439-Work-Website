@@ -4,6 +4,11 @@
     <link rel="stylesheet" href="../projects.css" />
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
     <title>HCDE 438</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
   </head>
   <nav>
     <ul>
@@ -24,7 +29,7 @@
         <div>
           <div class="text"> I created a Google chrome extension that replaces all images on the page with panda images. To run the code, you must unpack the extension in <a href="chrome://extensions/">chrome://extensions/</a>. Once it has been toggled on, any page you load from now until it is toggled off, will have its images replaced by pandas. Any pages that were already loaded before the extension was unpacked and toggled on must be refreshed for the extension to work.
           </div>
-          <img src="work.gif">
+          <img alt="Gif of extension working on Google images" src="work.gif">
         </div>
       </div>
       <h2>Development Process</h2>
@@ -39,7 +44,7 @@
           <h3>Writing Code</h3>
           <div class="text"> After trying to conceptualize how my original idea would work, I attempted to implement it, but got nothing working. I even tried using local files, however the extensions do not normally recognize your local server's files when an extension is loaded unless it is in the manifest. After discovering all of this, the task became to daunting and I opted for a simpler extension that would replace all images that were obtained from a REST API. This is where I got my panda images from.
           </div>
-          <img src="buggy.png"></img>
+          <img alt="Extension not working and not loading sometimes" src="buggy.png">
           <h3>Updating Knowledge and Code Based on Previous Output</h3>
           <div class="text"> I had to refresh my knowledge on calling APIs on JavaScript (since I took CSE 154 Web Programming) and look up other resources on how other people incorporated this idea. This is where I found a <a href="https://levelup.gitconnected.com/chrome-extension-tutorial-replace-images-in-any-website-with-pikachu-de2a6e3548bb">Pikachu Image Replacer</a> which was perfect. This code was an inspiration and template for my code to replace images with pandas.
           </div>
@@ -50,8 +55,8 @@
         <div>
           <div class="text"> A few issues appeared during the process of making this extension. One of them was trying to upload local files on the extension's HTML to be used on the browser and that was one that I had to give up on due to the complexity. The next issue I ran into was due to the limitations of the API. The API can limit requests if the requester is making too many requests within a span of time. This is to preserve servers and prevent bots from spamming data. However, because my extension makes multiple calls to the API (for each image), it gets caught in the mess. To resolve this issue, I had to use my understanding of data structures and JavaScript. The first 40 or so links request would go through, but afterwards would get 404 errors. So I saved all the unique panda images links from the API into a set and if there was a 404 request, I would choose an image from the set instead of a broken image link. This ended up working wonders since the requests weren't synchronous and ended up being a timing mess with the window loading. The last issue I ran into was that some images were not being replaced with pandas, which is where I realized some img tags use a src and some use a srcset, so I updated my code accordingly.
           </div>
-          <img src="fixing.png"></img>
-          <img src="working.png"></img>
+          <img alt="VSCode of JavaScript" src="fixing.png">
+          <img alt="Extension working on Google images" src="working.png">
         </div>
       </div>
       <h2>Ideas and Future</h2>

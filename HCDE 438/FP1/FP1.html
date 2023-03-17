@@ -6,6 +6,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
     <meta charset="utf-8" />
     <title>HCDE 438</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
   </head>
   <nav>
     <ul>
@@ -25,7 +30,7 @@
       <div class="text-container">
         <div>
           <div class="text">My 2D game, which can be found <a href="https://andyjshaw000.github.io/FinalProto/">here,</a> features a Sun celestial ninja who has the power to bend the elements of fire, earth, water, sun, and air. The ninja must defend against shadow warriors who are growing stronger and trying to attack the Sun itself. To fight these shadow warriors, the player can shoot sun orbs that damage enemies with the left mouse button and move around using the WASD keys. However, the player must be careful not to collide with the shadow warriors, as this will cause damage. As the player defeats more enemies, they'll collect experience points that can be used to level up and become even more powerful. After every few levels, the player can choose to upgrade their bending abilities or their health, speed, or defense, which will help them defeat even more enemies and ultimately save the Sun from danger.</div>
-          <a href="https://andyjshaw000.github.io/FinalProto/"><img src="gameplay.gif"></a>
+          <a href="https://andyjshaw000.github.io/FinalProto/"><img alt="Gif of my game being played" src="gameplay.gif"></a>
         </div>
       </div>
       <h2>Development Process</h2>
@@ -33,13 +38,13 @@
         <div>
           <h3>Adding a Sword Option</h3>
           <div class="text">The sword was a great addition to the game. I had to think about how I would implement it since I had an idea of how I wanted it to work. I ended up needing to read more documentation about creating sprites, and fortunately, p5play came out with a new way to initialize their sprite class. I used a line sprite that would rotate around the player and this created the effect I wanted. Then, I slapped on an animation and I was satisfied with the result.</div>
-          <img src="workingsword.gif">
+          <img alt="Using the sword with the left mouse button in the game" src="workingsword.gif">
           <h3>Adding a Play Again and Pause Button</h3>
           <div class="text">Adding these buttons was fairly easy. For playing again, since p5 already requires code for initialization, I could run it again when the button is pressed. Luckily, I factored my code in a way that made this a few lines of code with minor tweaks. As for the pause button, it was really easy to implement since I already have situations in the game that require it to pause. Though, it's a bit buggy since the game pauses regularly without a pause button. This makes the function of the pause button weird when the game is already paused and its text content incorrect. In the future, I would want the button to be disabled when the game is paused. Initially, the pause button was in the draw function, but after trying to optimize my code, I realized this could be done in the setup, using less resources.</div>
-          <img src="playagainscreen.png">
+          <img alt="Game over screen with a play again button" src="playagainscreen.png">
           <h3>Balancing the Game</h3>
           <div class="text">Balancing the game only required a few minor tweaks. I reduced the amount of damage certain skills did and mainly reduced the defense upgrade. Now, the defense upgrade reduces a percentage of itself, instead of a full percentage. Also, I added darkness to the game. As you can see below, over time, enemies become more difficult to see (due to low contrast) as time increases. I want the game to be difficult and not really last any longer than 10 minutes, because even with the performance updates, it is still slow. In the future, if I have the time, I want to split my code into separate files and use JSON to separate types of variables. This was a suggestion given to me by my instructor, Hannah.</div>
-          <img src="darkness.gif">
+          <img alt="The game getting darker based on player health" src="darkness.gif">
           <h3>Cleaning Code</h3>
           <div class="text">My code was really ugly. I still plan to fix it, but there were a lot of times where I named variables inconsistently and had bad code quality. Now all my functions are camelcased and my global variables are uppercase. This was thanks to the CMD+Shift+H Find and replace all functionality in VSCode. </div>
           <h3>Removing Performance Inefficiencies</h3>
@@ -50,8 +55,8 @@
       <div class="text-container">
         <div>
           <div class="text">Adding a sword to my game was a challenging task. I wanted the sword to move based on the mouse position, but the p5play library doesn't work well with moving canvases when calculating mouse position. I tried adapting my existing bullet code to work for the sword, but it wasn't instant, which meant the sword needed time to rotate and stick to the player. To create a hitbox similar to a sword, I used a new sprite option called the line/chain, but it was very buggy and didn't support many of the fields that the library sprites do. I eventually discovered that I needed to create a group for the sword and access the first available element to stick it to the moving player. However, the line hitbox wasn't perfect and the line location was displaced depending on which quadrant the mouse was in. I decided to keep this displacement as fine-tuning the sword to work exactly where the mouse is would be extremely difficult. I also faced issues with the sword animation as it would be displaced incorrectly and rotate along the wrong axis when added to the line. To work around this, I made four different swords that were rotated slightly to match the hitbox of the line sprite I created. Other issues I faced included my timer stacking on itself and updating my code without affecting other parts of the game. To resolve the timer issue, I cleared it whenever playing the game again, and I extensively tested my game whenever I made a change to avoid breaking other things in my code. Although this process was time-consuming, it was worthwhile as it helped me narrow down issues that would have been harder to find later on.</div>
-          <img src="p5down.png">
-          <img src="brokensword.gif">
+          <img alt="Screenshot of the p5 server being down" src="p5down.png">
+          <img alt="Gif of the sword not following the player around" src="brokensword.gif">
         </div>
       </div>
       <h2>Ideas and Future</h2>
@@ -85,7 +90,7 @@
       <div class="text-container">
         <div>
           <div class="text">Quinton Ashley (creator of p5play)</div>
-          <img src="quinton.png">
+          <img alt="Screenshot of a conversation between Quinton and I on Discord" src="quinton.png">
         </div>
       </div>
     </div>

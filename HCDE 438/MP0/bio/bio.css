@@ -1,3 +1,27 @@
+.picture {
+  width: 25vw;
+  border-radius: 1vw;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+
+.picture-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 120%;
+  margin: 0;
+  margin-left: -5vw;
+  gap: 1.5vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-title {
+  text-align: center;
+  font-family: monospace;
+  font-size: 1.5rem;
+}
+
 body {
   background-color: white;
   color: rgb(66, 66, 66);
@@ -7,18 +31,15 @@ body {
   width: 80%;
   margin-top: 10rem;
   margin: auto;
-  display: flex;
 }
 
 h1 {
   text-align: center;
+  line-height: 10vh;
 }
 
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 1.2vw;
-  /* line-height: 40%; */
-  /* line-height: 10px; */
 }
 
 h1 {
@@ -34,8 +55,7 @@ h1 {
 }
 
 #desc {
-  margin-left: 40px;
-  margin-right: 40px;
+  margin: auto;
   font-style: normal;
   align-items: center;
 }
@@ -59,7 +79,7 @@ li {
 li a {
   display: block;
   text-align: center;
-  padding: 14px 16px;
+  padding: .5vw .75vw;
   text-decoration: none;
   color: #8b8b8b;
   font-weight:normal;
@@ -74,21 +94,21 @@ li a:hover {
 }
 nav {
   font-family: Arial, Helvetica, sans-serif;
-  margin-bottom: 100px;
-  margin-top: 80px;
+  margin-bottom: 10vh;
+  margin-top: 8vh;
 }
 
 body {
-  margin-left: 1vw;
-  margin-right: 1vw;
-  line-height: 240%
+  margin-left: 6vw;
+  margin-right: 6vw;
+  line-height: 4vh;
 }
 
 #name {
   float: left;
   display: block;
   text-align: center;
-  padding: 14px 16px;
+  padding: .5vw .75vw;
   text-decoration: none;
   color: #8b8b8b;
   font-weight: bold;
@@ -98,14 +118,14 @@ body {
 }
 
 .intro {
-  margin-bottom: 110px;
-  /* margin-top: 110px; */
-  margin-top: .5vw;
-  margin-bottom: .5vw;
+  margin-bottom: 11vh;
+  margin-top: 11vh;
 }
 
-
-img {
-  /* width: 450px; */
-  width: 32vw;
+#pfp {
+  display: block;
+  height: 80%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
